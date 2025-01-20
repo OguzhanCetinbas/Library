@@ -1,0 +1,52 @@
+@using Library.ViewModel
+@model Library.ViewModel.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_AccountLayout";
+}
+
+<div class="container">
+   
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        <div class="login-section" id="loginForm">
+            <div class="input-group">
+                <label for="Name">Name</label>
+                <input type="text" id="Email" name="Name" required>
+            </div>
+            <div class="input-group">
+                <label for="Email">Email</label>
+                <input type="text" id="Email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" required>
+            </div>
+            <div class="input-group">
+                <label for="ConfirmPassword"> Confirm Password</label>
+                <input type="password" id="password" name="ConfirmPassword" required>
+            </div>
+            <div class="remember-forgot">
+                <div class="actions">
+                    <button type="submit" value="Login">Register </button>
+                </div>
+            </div>
+            <p class="no-account">
+                Already have and Account ?
+                <a asp-controller="Account" asp-action="Login" class="register-link">Go to login Page</a>
+            </p>
+            <div class="social-login">
+                <a href="#"><img src="https://img.icons8.com/color/48/000000/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="https://img.icons8.com/color/48/000000/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="https://img.icons8.com/color/48/000000/github.png" alt="GitHub"></a>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

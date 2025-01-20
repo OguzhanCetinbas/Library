@@ -1,0 +1,85 @@
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<Users> signInManager;
+<head>
+    <link rel="stylesheet" href="~/navbar.css" asp-append-version="true"/>
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        rel="stylesheet"
+    />
+</head>
+<div class="top-navbar" id = "top-navbar">
+    <div class="navbar-left">
+        <button id="toggle-sidebar" ><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="navbar-center">
+        <form id="search-form">
+            <input type="text" placeholder="Search..." />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="navbar-right">
+        <a href="#cart" class="cart-icon">
+            <i class="fa fa-shopping-cart"></i>
+        </a>
+        <a href="#contact">Contact</a>
+        <div class="user-dropdown">
+            <a href="#user" class="user-icon">
+                <i class="fa fa-user"></i>
+            </a>
+            <div class="dropdown-content">
+                <partial name="_LoginPartial"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sidebar" class="sidebar collapsed">
+    <button id="close-sidebar" class="close-sidebar"><i class="fa fa-times"></i></button>
+    <ul class="menu-list">
+        <li><i class="fa fa-envelope"></i> <span>Contact</span></li>
+        <li><i class="fa fa-list"></i> <span>Categories</span></li>
+    </ul>
+</div>
+
+<script>
+    /**
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            document.getElementById("top-navbar").style.top = "0";
+        } else {
+            document.getElementById("top-navbar").style.top = "-60px";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+    */
+    document.addEventListener("DOMContentLoaded", function () {
+        const sidebar = document.getElementById("sidebar");
+        const toggleSidebar = document.getElementById("toggle-sidebar");
+        const closeSidebar = document.getElementById("close-sidebar");
+        
+        closeSidebar.addEventListener("click", function () {
+            sidebar.classList.add("collapsed"); // Sidebar daralır
+            sidebar.classList.remove("expanded");
+
+            closeSidebar.style.visibility = "hidden";
+            closeSidebar.style.opacity = "0";
+            
+            toggleSidebar.style.visibility = "visible";
+            toggleSidebar.style.opacity = "1";
+        });
+
+        
+        toggleSidebar.addEventListener("click", function () {
+            sidebar.classList.add("expanded"); 
+            sidebar.classList.remove("collapsed");
+            
+            toggleSidebar.style.visibility = "hidden";
+            toggleSidebar.style.opacity = "0";
+            
+            closeSidebar.style.visibility = "visible";
+            closeSidebar.style.opacity = "1";
+        });
+    });
+</script>

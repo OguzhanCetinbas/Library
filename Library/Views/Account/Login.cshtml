@@ -1,0 +1,53 @@
+@using Library.ViewModel
+@model Library.ViewModel.LoginViewModel
+
+    @{
+        ViewData["Title"] = "Login";
+        Layout = "_AccountLayout";
+    }
+
+<div class="container">
+    <div class="welcome-section">
+        <h1>WELCOME</h1>
+        <p>Please login to continue</p>
+    </div>
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        <div class="login-section" id="loginForm">
+            <h2>Login</h2>
+            <div class="input-group">
+                <label for="Email">Email</label>
+                <input type="text" id="Email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" required>
+            </div>
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <label asp-for="RememberMe">Remember me? </label>
+                    <input asp-for="RememberMe" type="checkbox" />
+                </div>
+                <div class="actions">
+                    <button type="submit" value="Login">Login</button>
+                </div>
+            </div>
+            <a asp-controller="Account" asp-action="VerifyEmail" class="forgot-password">Forgot Password?</a>
+            <p class="no-account">
+                Don't have an account?
+                <a asp-controller="Account" asp-action="Register" class="register-link">Register</a>
+            </p>
+            <div class="social-login">
+                <a href="#"><img src="https://img.icons8.com/color/48/000000/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="https://img.icons8.com/color/48/000000/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="https://img.icons8.com/color/48/000000/github.png" alt="GitHub"></a>
+            </div>
+        </div>
+    }
+</div>
+
+    @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+    }
